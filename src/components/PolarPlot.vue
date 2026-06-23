@@ -32,18 +32,18 @@ const pathD = computed(() => {
 
 const startPoint = computed(() => {
   if (!props.points.length) return null
-  return toCartesian(props.points[0].azimuth, props.points[0].elevation)
+  return toCartesian(props.points[0]!.azimuth, props.points[0]!.elevation)
 })
 
 const endPoint = computed(() => {
   if (!props.points.length) return null
-  const last = props.points[props.points.length - 1]
+  const last = props.points[props.points.length - 1]!
   return toCartesian(last.azimuth, last.elevation)
 })
 
 const maxElPoint = computed(() => {
   if (!props.points.length) return null
-  let maxP = props.points[0]
+  let maxP = props.points[0]!
   for (const p of props.points) {
     if (p.elevation > maxP.elevation) maxP = p
   }

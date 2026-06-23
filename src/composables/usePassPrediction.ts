@@ -5,6 +5,8 @@ const STEP_SECONDS = 10
 const MIN_PASS_DURATION_SEC = 30
 const TRAJECTORY_STEP_SECONDS = 0.2
 
+type PassSample = { time: Date; elevation: number; azimuth: number }
+
 function toRad(deg: number): number {
   return deg * (Math.PI / 180)
 }
@@ -28,7 +30,7 @@ export function usePassPrediction() {
       height: station.altitude / 1000,
     }
 
-    const raw: { time: Date; elevation: number; azimuth: number }[] = []
+    const raw: PassSample[] = []
     const startMs = startTime.getTime()
     const endMs = endTime.getTime()
 
@@ -75,13 +77,13 @@ export function usePassPrediction() {
     return passes
   }
 
-  function buildPass(samples: typeof raw): PassEvent {
-    const aos = samples[0].time
-    const los = samples[samples.length - 1].time
+  function buildPass(samples: PassSample[]): PassEvent {
+    const aos = samples[0]!.time
+    const los = samples[samples.length - 1]!.time
     const durationSec = Math.round((los.getTime() - aos.getTime()) / 1000)
 
     let maxEl = -90
-    let maxElSample = samples[0]
+    let maxElSample = samples[0]!
     for (const s of samples) {
       if (s.elevation > maxEl) {
         maxEl = s.elevation
@@ -94,8 +96,8 @@ export function usePassPrediction() {
       los,
       durationSec,
       maxElevation: Math.round(maxEl * 10) / 10,
-      aosAzimuth: Math.round(samples[0].azimuth * 10) / 10,
-      losAzimuth: Math.round(samples[samples.length - 1].azimuth * 10) / 10,
+      aosAzimuth: Math.round(samples[0]!.azimuth * 10) / 10,
+      losAzimuth: Math.round(samples[samples.length - 1]!.azimuth * 10) / 10,
       culminationTime: maxElSample.time,
     }
   }
