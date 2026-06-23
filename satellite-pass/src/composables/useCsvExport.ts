@@ -4,11 +4,11 @@ export function useCsvExport() {
   function generateCsv(points: PassTrajectoryPoint[]): string {
     const header = [
       'time',
-      'KII_OSHIMA_TLM.Range',
-      'KII_OSHIMA_TLM.Azimuth',
-      'KII_OSHIMA_TLM.Elevation',
-      'KII_OSHIMA_TLM.Tlookang',
-      'KII_OSHIMA_TLM.Rlookang',
+      'Range',
+      'Azimuth',
+      'Elevation',
+      'Tlookang',
+      'Rlookang',
       'latg',
       'lng',
       'h',

@@ -28,6 +28,15 @@ export interface PassTrajectoryPoint {
   height: number
 }
 
+export interface SkyPosition {
+  satelliteId: number
+  name: string
+  noradId: number
+  azimuth: number
+  elevation: number
+  range: number
+}
+
 export interface PassEvent {
   aos: Date
   los: Date

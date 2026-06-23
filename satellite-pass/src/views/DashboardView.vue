@@ -15,7 +15,7 @@ const stationCount = () => stations.value?.length ?? 0
     <h1 class="text-2xl font-bold">Dashboard</h1>
     <p class="text-gray-500 text-sm">Manage satellites, ground stations, and predict satellite passes.</p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <RouterLink to="/satellites" class="block border rounded-lg p-5 hover:shadow-md transition-shadow bg-white">
         <div class="text-3xl font-bold text-blue-600">{{ satCount() }}</div>
         <div class="text-sm text-gray-500 mt-1">Satellites</div>
@@ -29,6 +29,11 @@ const stationCount = () => stations.value?.length ?? 0
       <RouterLink to="/pass-prediction" class="block border rounded-lg p-5 hover:shadow-md transition-shadow bg-white">
         <div class="text-3xl font-bold text-purple-600">&rarr;</div>
         <div class="text-sm text-gray-500 mt-1">Predict Passes</div>
+      </RouterLink>
+
+      <RouterLink to="/sky-view" class="block border rounded-lg p-5 hover:shadow-md transition-shadow bg-white">
+        <div class="text-3xl font-bold text-orange-600">&#9678;</div>
+        <div class="text-sm text-gray-500 mt-1">Sky View</div>
       </RouterLink>
     </div>
   </div>

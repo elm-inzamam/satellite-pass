@@ -29,6 +29,11 @@ const router = createRouter({
       name: 'pass-detail',
       component: () => import('@/views/PassDetailView.vue'),
     },
+    {
+      path: '/sky-view',
+      name: 'sky-view',
+      component: () => import('@/views/SkyView.vue'),
+    },
   ],
 })
 

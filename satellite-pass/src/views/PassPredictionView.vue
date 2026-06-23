@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { useSatellite } from '@/composables/useSatellite'
 import { useGroundStation } from '@/composables/useGroundStation'
 import { usePassPrediction } from '@/composables/usePassPrediction'
@@ -10,6 +10,7 @@ import type { PassEvent, Satellite, GroundStation } from '@/types'
 import dayjs from 'dayjs'
 
 const router = useRouter()
+const route = useRoute()
 const { satellites } = useSatellite()
 const { stations } = useGroundStation()
 const { calculatePasses } = usePassPrediction()
@@ -65,6 +66,23 @@ function compute() {
     loading.value = false
   }, 50)
 }
+
+onMounted(() => {
+  const satId = route.query.satId
+  if (satId) {
+    const id = parseInt(satId as string, 10)
+    if (!isNaN(id)) {
+      selectedSatelliteId.value = id
+    }
+  }
+  const stationId = route.query.stationId
+  if (stationId) {
+    const id = parseInt(stationId as string, 10)
+    if (!isNaN(id)) {
+      selectedStationId.value = id
+    }
+  }
+})
 
 function handleSelectPass(index: number) {
   selectedPassIndex.value = index

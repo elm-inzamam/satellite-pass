@@ -8,6 +8,7 @@ const links = [
   { to: '/satellites', label: 'Satellites' },
   { to: '/ground-stations', label: 'Ground Stations' },
   { to: '/pass-prediction', label: 'Pass Prediction' },
+  { to: '/sky-view', label: 'Sky View' },
 ]
 </script>
 
@@ -15,7 +16,11 @@ const links = [
   <nav class="bg-gray-900 text-white shadow-lg">
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex items-center justify-between h-14">
-        <div class="font-bold text-lg tracking-wide">Satellite Pass</div>
+        <div class="font-bold text-lg tracking-wide">
+          <RouterLink to="/" class="hover:text-blue-400">
+            Satellite Pass
+          </RouterLink>
+        </div>
         <div class="flex gap-1">
           <RouterLink
             v-for="link in links"
